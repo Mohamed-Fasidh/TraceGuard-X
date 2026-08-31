@@ -194,8 +194,8 @@ Then briefly show the secondary metrics:
 ```text
 Critical failure detection
 Precision: 100.00%
-Recall:     81.25%
-F1:        89.66%
+Recall:     56.25%
+F1:         72.00%
 
 Claim/evidence contradiction
 Precision: 52.00%
