@@ -1,305 +1,182 @@
-# TraceGuard X — 5 Minute Loom
+# TraceGuard X — Agent Use Disclosure
 
-## 0:00–0:30 — Problem
+## Coding-Agent Use
 
-"An AI coding agent can report success even when its implementation fails.
+Coding-agent assistance was used during development of TraceGuard X.
 
-TraceGuard X turns that claim into an independent verification problem.
+**Coding agent used:** OpenAI ChatGPT
 
-Instead of trusting what the agent says, we collect evidence about what the
-implementation actually does."
+The coding agent was used to assist with implementation, debugging, test
+execution, documentation, evaluation workflow development, and iterative
+refinement.
 
-### Show
+## Agent Roles in the Final Workflow
 
-Open a representative false-success trajectory, preferably `trace_011`.
+The final TraceGuard X verification workflow uses the following
+specialized stages:
 
-Show:
+1. **Trace Analyst** — normalizes the coding-agent trajectory and
+   extracts claims and candidate code.
+
+2. **Requirement Agent** — converts requirements into explicit
+   verification targets.
+
+3. **Verification Planner** — creates a bounded verification plan.
+
+4. **Adversarial Verifier** — selects high-value edge and adversarial
+   cases within the verification budget.
+
+5. **Static Analyzer** — performs deterministic syntax/static
+   validation before execution.
+
+6. **Execution Agent** — runs candidate code independently inside the
+   Docker sandbox.
+
+7. **Auditor** — reconciles claims with independent evidence and
+   determines whether human review is required.
+
+### Agent Design Philosophy
+
+TraceGuard X deliberately does not use an LLM as the final authority on
+correctness.
+
+Agents are used for interpretation, requirement analysis, verification
+planning, and bounded adversarial reasoning. Deterministic components are
+used for static analysis, sandbox execution, evidence reconciliation, and
+final scoring because these stages require reproducible and independently
+verifiable evidence.
+
+This separation is intentional: agent reasoning helps determine what should
+be verified, while deterministic verification determines what the evidence
+actually shows.
+
+## Trajectory Evidence
+
+Representative trajectories for every agent are included under:
 
 ```text
-CLAIMED VERDICT: PASS
-CLAIMED TESTS: 6/6
+trajectories/
+
+├── trace_analyst.jsonl
+├── requirement_agent.jsonl
+├── verification_planner.jsonl
+├── adversarial_verifier.jsonl
+├── static_analyzer.jsonl
+├── execution_agent.jsonl
+└── auditor.jsonl
 ```
 
-Then explain that TraceGuard independently verifies the candidate.
+The trajectory files are generated from the recorded
+`agent_runtime.events` produced by the advanced evaluation run.
 
----
+They contain structured evidence such as:
 
-## 0:30–1:00 — Baseline
+- agent actions;
+- inputs and outputs;
+- reasons for actions;
+- tool responses;
+- feedback;
+- retries;
+- human checkpoints.
 
-Run or open the baseline result.
+The trajectory artifacts can be regenerated with:
 
-"The baseline is intentionally simple. It primarily trusts the agent's
-reported verdict and execution narrative.
-
-This gives us a control system that we can compare against the evidence-first
-advanced evaluator."
-
-Show:
-
-```text
-artifacts/baseline_results.json
+```bash
+python scripts/export_trajectories.py
 ```
 
-Then briefly show the generated baseline result.
+## Independence of Verification
 
----
+The coding agent's claims are **not treated as independent proof of
+correctness**.
 
-## 1:00–2:00 — Advanced Agentic Verification Pipeline
-
-Show the architecture:
+TraceGuard X separates:
 
 ```text
-Trajectory
+Agent claim
     ↓
-Trace Analyst
+Requirement target
     ↓
-Requirement Graph
+Independent verification
     ↓
-Verification Planner
+Observed evidence
     ↓
-Bounded Adversarial Verifier
+Claim/evidence reconciliation
     ↓
-Static Analysis
+Deterministic scoring
     ↓
-Independent Docker Sandbox
-    ↓
-Evidence Reconciliation
-    ↓
-Deterministic Scoring
-    ↓
-Human Review
+Human review when evidence is insufficient
 ```
 
-"The advanced system separates the agent's claims from independently generated
-evidence.
+Execution results are produced independently inside the Docker sandbox.
 
-First, the Trace Analyst extracts the claims.
+Hard verification decisions are based on observed execution and
+deterministic checks rather than allowing an agent narrative to override
+contradictory evidence.
 
-The Requirement Agent turns requirements into explicit verification targets.
+## Benchmark Disclosure
 
-The Verification Planner determines how those targets should be checked.
+The final V3 benchmark contains 40 synthetic cases. Baseline and
+advanced evaluation use the same benchmark files.
 
-The bounded Adversarial Verifier adds high-value edge cases under an explicit
-test budget.
-
-Static Analysis checks the candidate before execution.
-
-Then the candidate is executed independently inside the Docker sandbox.
-
-Finally, TraceGuard reconciles the claims with the observed evidence and
-produces a deterministic score and human-review recommendation."
-
-### Important point
-
-"Verification is bounded. The system does not generate unlimited tests.
-Adversarial verification is constrained by an explicit budget."
-
----
-
-## 2:00–3:00 — Evidence and Contradiction
-
-Open the result for `trace_011`.
-
-Show the agent claim:
-
-```text
-CLAIMED VERDICT = PASS
-CLAIMED TESTS = 6/6
-```
-
-Then show the independent evidence and findings.
-
-"This is the important part.
-
-The agent claimed that the implementation passed.
-
-But independent verification found a behavioral mismatch.
-
-TraceGuard therefore records a claim/evidence contradiction instead of trusting
-the narrative."
-
-Show:
-
-```text
-behavior_failure
-claim_evidence_contradiction
-```
-
-Then show:
-
-```text
-FINAL VERDICT = FAIL
-HUMAN REVIEW = true
-```
-
-"The evaluator does not hide the contradiction. It preserves the claim,
-the evidence, the finding and the resulting decision."
-
----
-
-## 3:00–3:40 — Mutation Testing
-
-Open:
-
-```text
-artifacts/mutation_report.json
-```
-
-"We also test TraceGuard itself.
-
-Mutation testing introduces realistic faults into the evaluator and checks
-whether our tests can detect those faults.
-
-This gives us evidence about the strength of the evaluator rather than only
-testing the candidates."
-
-Show the generated mutation result.
-
-Highlight:
-
-```text
-24 / 24 mutations killed
-100% mutation detection rate
-```
-
----
-
-## 3:40–4:20 — Final V3 Benchmark
-
-Open:
-
-```text
-artifacts/comparison.json
-```
-
-"Now we compare the baseline and advanced systems on the same fixed V3
-benchmark.
-
-The benchmark contains 40 synthetic cases.
-
-These are the actual generated results. We do not manually type or fabricate
-the percentages."
-
-Show:
-
-```text
-Benchmark cases:       40
-Baseline accuracy:     20.00%
-Advanced accuracy:    100.00%
-Improvement:          +80 percentage points
-```
-
-Then briefly show the secondary metrics:
-
-```text
-Critical failure detection
-Precision: 100.00%
-Recall:     56.25%
-F1:         72.00%
-
-Claim/evidence contradiction
-Precision: 52.00%
-Recall:    65.00%
-F1:        57.78%
-```
-
-"The advanced evaluator correctly classified all 40 benchmark cases in this
-generated V3 run."
-
----
-
-## 4:20–4:40 — Changelog and Key Learning
-
-Open:
-
-```text
-IMPROVEMENT_CHANGELOG.md
-```
-
-"The biggest improvement was moving from narrative trust to independent
-evidence.
-
-We also tested alternative evaluator approaches during development and removed
-an LLM-judge debate experiment because its cost and complexity did not provide
-enough measured benefit.
-
-The result was a simpler and more inspectable architecture where deterministic
-evidence has priority."
-
----
-
-## 4:40–5:00 — Closing
-
-Show the complete architecture one final time.
-
-"TraceGuard X does not ask whether an AI coding agent sounds convincing.
-
-It asks what can actually be verified.
-
-The final result connects the agent's claim with independent evidence,
-findings, score, confidence and a human-review trigger.
-
-The core idea is simple:
-
-Claims are recorded.
-
-Evidence is independently generated.
-
-Contradictions are surfaced.
-
-And the final evaluation is deterministic and auditable."
-
-End on:
-
-```text
-TraceGuard X
-
-Evidence over narrative.
-```
-
----
-
-# Demo Files
-
-Use these files during the video:
+Generated benchmark and validation artifacts include:
 
 ```text
 artifacts/baseline_results.json
 artifacts/advanced_results.json
 artifacts/comparison.json
+artifacts/benchmark_validation.json
 artifacts/mutation_report.json
 artifacts/preflight.json
+artifacts/evaluator_challenge.json
 ```
 
-Recommended demonstration trace:
+No benchmark percentages are manually inserted into these generated
+artifacts.
 
-```text
-data/traces/trace_011.json
-```
+### Benchmark Validation Metric
 
-If the filename differs in the local environment, use the corresponding
-trace containing the false-success `PASS` claim and independent behavioral
-failure.
+The synthetic executor validation and final TraceGuard X verdict accuracy
+measure different things.
 
----
+The synthetic executor validation reports 95% validation accuracy for the
+benchmark execution fixture.
 
-# Final Video Integrity
+The final TraceGuard X comparison reports 100% verdict accuracy across the
+40-case benchmark after the complete evidence-reconciliation pipeline.
 
-Use only generated benchmark values from:
+The two metrics are therefore retained and reported separately rather than
+being conflated.
 
-```text
-artifacts/comparison.json
-```
+## Data and Credentials
 
-Do not manually fabricate benchmark metrics.
+The included benchmark data is synthetic.
 
-The final V3 benchmark result demonstrated in the video is:
+No real credentials, API keys, passwords, or private user information
+are included in the submission.
 
-```text
-40 benchmark cases
-Baseline accuracy: 20.00%
-Advanced accuracy: 100.00%
-Improvement: +80 percentage points
-```
+Environment secrets such as `.env` files are excluded from the
+submission.
 
-The video must remain within the competition's five-minute limit.
+## Development Assistance vs. Evaluation Evidence
+
+Coding-agent assistance during development should not be confused with
+the evidence used to evaluate TraceGuard X.
+
+Development assistance helped build and refine the system. The final
+benchmark evaluation is performed by the submitted evaluation
+pipeline using the fixed benchmark, deterministic checks, property
+verification, and independent Docker execution. Agent-generated
+interpretation and planning are treated as inputs to the verification
+workflow rather than authoritative correctness evidence.
+
+## Disclosure Summary
+
+TraceGuard X was developed with coding-agent assistance, and that use is
+explicitly disclosed here. The submitted trajectory artifacts provide
+inspectable evidence of the specialized agents used by the final
+verification workflow.
+
+The central design principle is that **agent-generated claims are
+evidence candidates, not proof**. Independent verification remains the
+basis for the final evaluation decision.
