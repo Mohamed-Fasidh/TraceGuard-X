@@ -198,15 +198,14 @@ def main():
     # Only genuine candidate evidence counts as a critical
     # candidate failure.
     #
-    # sandbox_timeout / verification_gap are NOT included.
-    #
+    # sandbox_timeout and verification_gap are handled separately
+    # and do not count as candidate failures.
 
     critical_categories = {
     "runtime_error",
     "dependency_error",
     "syntax_error",
     "timeout",
-    "sandbox_timeout",
 }
 
     critical_predicted = {
