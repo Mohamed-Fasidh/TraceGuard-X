@@ -1,0 +1,3 @@
+﻿{"agent":"adversarial_verifier","step":1,"action":"generate_cases","input":"trace_011","output":{"budget":8,"candidate_cases":8}}
+{"agent":"adversarial_verifier","step":2,"action":"prioritize_edge_cases","input":{"task":"returns input unchanged"},"output":{"selected_cases":["hello","","x"," ","café","xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","123","hello\n"]}}
+{"agent":"adversarial_verifier","step":3,"action":"deduplicate_and_handoff","output":{"unique_cases":8,"budget_respected":true},"feedback":"High-value boundary and representation cases selected within the fixed verification budget."}

@@ -1,0 +1,3 @@
+﻿{"agent":"static_analyzer","step":1,"action":"syntax_check","input":"trace_011","output":{"syntax_ok":true,"compile_error":null}}
+{"agent":"static_analyzer","step":2,"action":"validate_candidate","input":{"syntax_ok":true},"output":{"execution_allowed":true}}
+{"agent":"static_analyzer","step":3,"action":"handoff","output":{"syntax_ok":true,"static_verification_passed":true},"feedback":"Candidate passed static validation and can proceed to independent sandbox execution."}
