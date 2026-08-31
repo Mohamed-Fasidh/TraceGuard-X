@@ -33,10 +33,9 @@ The final V3 benchmark was executed against the fixed 40-case dataset.
 | Baseline accuracy | 20.00% |
 | Advanced accuracy | 100.00% |
 | Absolute improvement | +80 percentage points |
-| Relative improvement | 400% |
 | Advanced incorrect verdicts | 0 |
 
-These values must be taken directly from:
+These values are taken from:
 
 ```text
 artifacts/comparison.json
