@@ -11,14 +11,42 @@ result_file = Path("artifacts/advanced_results.json")
 comparison_file = Path("artifacts/comparison.json")
 
 if comparison_file.exists():
-    comparison = json.loads(comparison_file.read_text())
+    comparison = json.loads(
+        comparison_file.read_text(encoding="utf-8")
+    )
+
+    benchmark = comparison["benchmark"]
+    accuracy = comparison["verdict_accuracy"]
+    critical = comparison["critical_failure"]
+
     st.subheader("Benchmark")
+
     cols = st.columns(5)
-    cols[0].metric("Cases", comparison["cases"])
-    cols[1].metric("Baseline accuracy", f"{comparison['baseline_verdict_accuracy']*100:.1f}%")
-    cols[2].metric("Advanced accuracy", f"{comparison['advanced_verdict_accuracy']*100:.1f}%")
-    cols[3].metric("Absolute improvement", f"{comparison['absolute_improvement']*100:.1f}pp")
-    cols[4].metric("Critical detection", f"{comparison['advanced_critical_failure_detection']*100:.1f}%")
+
+    cols[0].metric(
+        "Cases",
+        benchmark["cases"],
+    )
+
+    cols[1].metric(
+        "Baseline accuracy",
+        f"{accuracy['baseline'] * 100:.1f}%",
+    )
+
+    cols[2].metric(
+        "Advanced accuracy",
+        f"{accuracy['advanced'] * 100:.1f}%",
+    )
+
+    cols[3].metric(
+        "Absolute improvement",
+        f"{accuracy['absolute_improvement'] * 100:.1f}pp",
+    )
+
+    cols[4].metric(
+        "Critical F1",
+        f"{critical['f1'] * 100:.1f}%",
+    )
 
 if not result_file.exists():
     st.info("Run the advanced evaluator to populate the evidence dashboard.")
@@ -47,7 +75,7 @@ st.subheader("Claim vs Evidence")
 st.json({
     "findings": r["findings"],
     "execution": r["execution"],
-    "property_evidence": r["property_evidence"],
+    "property_pass_rate": r["property_pass_rate"],
 })
 
 st.subheader("Evidence Graph")
