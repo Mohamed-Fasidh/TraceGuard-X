@@ -296,8 +296,8 @@ The current benchmark reports:
 ```text
 Critical-failure detection
 Precision = 100%
-Recall    = 81.25%
-F1        = 89.66%
+Recall    = 56.25%
+F1        = 72.00%
 ```
 
 and:
