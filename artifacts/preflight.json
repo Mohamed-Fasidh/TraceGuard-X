@@ -1,0 +1,90 @@
+{
+  "qualification_passed": false,
+  "checks": [
+    {
+      "check": "required:README.md",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:REPRODUCTION.md",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:IMPROVEMENT_CHANGELOG.md",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:AGENT_DISCLOSURE.md",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:SECURITY.md",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:Dockerfile",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:requirements.txt",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:baseline/baseline.py",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:src/traceguard/pipeline.py",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:evaluation/compare.py",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "required:data/ground_truth.json",
+      "passed": true,
+      "detail": "present"
+    },
+    {
+      "check": "benchmark_cases",
+      "passed": true,
+      "detail": "40 cases"
+    },
+    {
+      "check": "python",
+      "passed": true,
+      "detail": "3.10.1"
+    },
+    {
+      "check": "docker_binary",
+      "passed": true,
+      "detail": "found"
+    },
+    {
+      "check": "docker_daemon",
+      "passed": false,
+      "detail": "unavailable"
+    },
+    {
+      "check": "comparison_artifact",
+      "passed": true,
+      "detail": "cases=40 baseline=40 advanced=40 benchmark=40 same_benchmark=True"
+    },
+    {
+      "check": "mutation_artifact",
+      "passed": true,
+      "detail": "present and valid JSON"
+    }
+  ]
+}

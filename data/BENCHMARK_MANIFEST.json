@@ -1,0 +1,40 @@
+{
+  "name": "TraceGuard X Competition Benchmark v3",
+  "seed": 42,
+  "cases": 40,
+  "contract": "solve(x) must return x for every declared test input",
+  "distribution": {
+    "correct": 8,
+    "logic": 7,
+    "runtime": 6,
+    "missing_requirement": 5,
+    "false_claim": 4,
+    "syntax": 3,
+    "dependency": 3,
+    "timeout": 4
+  },
+  "test_cases_per_trace": 6,
+  "inputs": [
+    "hello",
+    "",
+    "x",
+    " ",
+    "123",
+    "caf\u00e9",
+    "hello\n",
+    "  hello  ",
+    "aaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "\ud83d\ude42",
+    "0",
+    "-1",
+    "True",
+    "line1\nline2",
+    "foo-bar",
+    "email@example.com",
+    "[]",
+    "{}"
+  ],
+  "integrity_rule": "Baseline and advanced must consume the exact same trace files."
+}

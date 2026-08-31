@@ -1,0 +1,3 @@
+{"agent":"trace_analyst","step":1,"action":"normalize_trace","input":"trace_003","output":{"claimed_verdict":"PASS","claimed_tests":"2/2"}}
+{"agent":"trace_analyst","step":2,"action":"extract_code","output":"candidate code extracted"}
+{"agent":"trace_analyst","step":3,"action":"handoff","feedback":"Do not accept success without independent evidence."}

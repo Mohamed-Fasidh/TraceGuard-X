@@ -1,0 +1,111 @@
+{
+  "cases": 15,
+  "synthetic_executor_accuracy": 1.0,
+  "rows": [
+    {
+      "trace_id": "001",
+      "expected": "PASS",
+      "observed": "PASS",
+      "match": true,
+      "error": null
+    },
+    {
+      "trace_id": "002",
+      "expected": "PASS",
+      "observed": "PASS",
+      "match": true,
+      "error": null
+    },
+    {
+      "trace_id": "003",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": "TypeError: string indices must be integers, not 'str'"
+    },
+    {
+      "trace_id": "004",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": "ZeroDivisionError: division by zero"
+    },
+    {
+      "trace_id": "005",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": null
+    },
+    {
+      "trace_id": "006",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": null
+    },
+    {
+      "trace_id": "007",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": null
+    },
+    {
+      "trace_id": "008",
+      "expected": "PASS",
+      "observed": "PASS",
+      "match": true,
+      "error": null
+    },
+    {
+      "trace_id": "009",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": "ValueError: empty"
+    },
+    {
+      "trace_id": "010",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": "ModuleNotFoundError: No module named 'definitely_missing_package'"
+    },
+    {
+      "trace_id": "011",
+      "expected": "PASS",
+      "observed": "PASS",
+      "match": true,
+      "error": null
+    },
+    {
+      "trace_id": "012",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": "SyntaxError: expected ':' (<unknown>, line 1)"
+    },
+    {
+      "trace_id": "013",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": null
+    },
+    {
+      "trace_id": "014",
+      "expected": "PASS",
+      "observed": "PASS",
+      "match": true,
+      "error": null
+    },
+    {
+      "trace_id": "015",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "match": true,
+      "error": "TIMEOUT (synthetic fixture)"
+    }
+  ]
+}

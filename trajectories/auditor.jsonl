@@ -1,0 +1,2 @@
+{"agent":"auditor","step":1,"action":"reconcile","input":"trace_003","evidence":["claimed PASS","observed non-zero exit"]}
+{"agent":"auditor","step":2,"action":"decision","output":{"verdict":"FAIL","human_review_required":true}}

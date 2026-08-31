@@ -1,0 +1,2 @@
+{"agent":"verification_planner","step":1,"action":"derive_checks","input":"trace_003","output":["compile","missing nested object"]}
+{"agent":"verification_planner","step":2,"action":"handoff","feedback":"Agent-reported tests are not trusted as the oracle."}

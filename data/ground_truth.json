@@ -1,0 +1,242 @@
+[
+  {
+    "trace_id": "001",
+    "verdict": "PASS",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "002",
+    "verdict": "PASS",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "003",
+    "verdict": "PASS",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "004",
+    "verdict": "PASS",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "005",
+    "verdict": "PASS",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "006",
+    "verdict": "PASS",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "007",
+    "verdict": "PASS",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "008",
+    "verdict": "PASS",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "009",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "010",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "011",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "012",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "013",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "014",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "015",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "016",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "017",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "018",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "019",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "020",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "021",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "022",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "023",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "024",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "025",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "026",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": false
+  },
+  {
+    "trace_id": "027",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": true
+  },
+  {
+    "trace_id": "028",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": true
+  },
+  {
+    "trace_id": "029",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": true
+  },
+  {
+    "trace_id": "030",
+    "verdict": "FAIL",
+    "critical_failure": false,
+    "contradiction": true
+  },
+  {
+    "trace_id": "031",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "032",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "033",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "034",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "035",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "036",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "037",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "038",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "039",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  },
+  {
+    "trace_id": "040",
+    "verdict": "FAIL",
+    "critical_failure": true,
+    "contradiction": true
+  }
+]

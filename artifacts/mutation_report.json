@@ -1,0 +1,192 @@
+{
+  "benchmark_cases": 8,
+  "mutations_total": 24,
+  "mutations_killed": 24,
+  "mutation_detection_rate": 1.0,
+  "rows": [
+    {
+      "trace_id": "001",
+      "total": 3,
+      "killed": 3,
+      "rate": 1.0,
+      "mutations": [
+        {
+          "mutation_id": "M1",
+          "description": "replace identity return with None",
+          "killed": true
+        },
+        {
+          "mutation_id": "M2",
+          "description": "uppercase identity return",
+          "killed": true
+        },
+        {
+          "mutation_id": "M3",
+          "description": "constant wrong return",
+          "killed": true
+        }
+      ]
+    },
+    {
+      "trace_id": "002",
+      "total": 3,
+      "killed": 3,
+      "rate": 1.0,
+      "mutations": [
+        {
+          "mutation_id": "M1",
+          "description": "replace identity return with None",
+          "killed": true
+        },
+        {
+          "mutation_id": "M2",
+          "description": "uppercase identity return",
+          "killed": true
+        },
+        {
+          "mutation_id": "M3",
+          "description": "constant wrong return",
+          "killed": true
+        }
+      ]
+    },
+    {
+      "trace_id": "003",
+      "total": 3,
+      "killed": 3,
+      "rate": 1.0,
+      "mutations": [
+        {
+          "mutation_id": "M1",
+          "description": "replace identity return with None",
+          "killed": true
+        },
+        {
+          "mutation_id": "M2",
+          "description": "uppercase identity return",
+          "killed": true
+        },
+        {
+          "mutation_id": "M3",
+          "description": "constant wrong return",
+          "killed": true
+        }
+      ]
+    },
+    {
+      "trace_id": "004",
+      "total": 3,
+      "killed": 3,
+      "rate": 1.0,
+      "mutations": [
+        {
+          "mutation_id": "M1",
+          "description": "replace identity return with None",
+          "killed": true
+        },
+        {
+          "mutation_id": "M2",
+          "description": "uppercase identity return",
+          "killed": true
+        },
+        {
+          "mutation_id": "M3",
+          "description": "constant wrong return",
+          "killed": true
+        }
+      ]
+    },
+    {
+      "trace_id": "005",
+      "total": 3,
+      "killed": 3,
+      "rate": 1.0,
+      "mutations": [
+        {
+          "mutation_id": "M1",
+          "description": "replace identity return with None",
+          "killed": true
+        },
+        {
+          "mutation_id": "M2",
+          "description": "uppercase identity return",
+          "killed": true
+        },
+        {
+          "mutation_id": "M3",
+          "description": "constant wrong return",
+          "killed": true
+        }
+      ]
+    },
+    {
+      "trace_id": "006",
+      "total": 3,
+      "killed": 3,
+      "rate": 1.0,
+      "mutations": [
+        {
+          "mutation_id": "M1",
+          "description": "replace identity return with None",
+          "killed": true
+        },
+        {
+          "mutation_id": "M2",
+          "description": "uppercase identity return",
+          "killed": true
+        },
+        {
+          "mutation_id": "M3",
+          "description": "constant wrong return",
+          "killed": true
+        }
+      ]
+    },
+    {
+      "trace_id": "007",
+      "total": 3,
+      "killed": 3,
+      "rate": 1.0,
+      "mutations": [
+        {
+          "mutation_id": "M1",
+          "description": "replace identity return with None",
+          "killed": true
+        },
+        {
+          "mutation_id": "M2",
+          "description": "uppercase identity return",
+          "killed": true
+        },
+        {
+          "mutation_id": "M3",
+          "description": "constant wrong return",
+          "killed": true
+        }
+      ]
+    },
+    {
+      "trace_id": "008",
+      "total": 3,
+      "killed": 3,
+      "rate": 1.0,
+      "mutations": [
+        {
+          "mutation_id": "M1",
+          "description": "replace identity return with None",
+          "killed": true
+        },
+        {
+          "mutation_id": "M2",
+          "description": "uppercase identity return",
+          "killed": true
+        },
+        {
+          "mutation_id": "M3",
+          "description": "constant wrong return",
+          "killed": true
+        }
+      ]
+    }
+  ]
+}
