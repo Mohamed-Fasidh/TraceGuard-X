@@ -1,54 +1,54 @@
-**# TraceGuard X**
+# TraceGuard X
 
-**## Evidence-First Evaluation for Coding-Agent Trajectories**
+## Evidence-First Evaluation for Coding-Agent Trajectories
 
 TraceGuard X evaluates AI coding-agent work by separating:
 
-\> **\*\*What an agent claims\*\*** from **\*\*what can be independently verified.\*\***
+> ****What an agent claims**** from ****what can be independently verified.****
 
 Coding agents can produce plausible implementations and plausible execution narratives. A reviewer who only sees the final response may accept an incorrect result because the reported tests, outputs, or success claims are not independently verified.
 
 TraceGuard X addresses this by treating agent claims as hypotheses and independently generating execution evidence before producing a final verdict.
 
-**---**
+---
 
-**## Problem**
+## Problem
 
 Coding agents can report successful work even when the underlying implementation is incorrect.
 
 Typical failure modes include:
 
-\- False "tests passed" claims
+- False "tests passed" claims
 
-\- Incorrect output claims
+- Incorrect output claims
 
-\- Runtime failures hidden by the agent narrative
+- Runtime failures hidden by the agent narrative
 
-\- Syntax or compilation failures
+- Syntax or compilation failures
 
-\- Missing requirements
+- Missing requirements
 
-\- Incomplete edge-case handling
+- Incomplete edge-case handling
 
-\- Agent success claims that contradict independent execution
+- Agent success claims that contradict independent execution
 
-\- Insufficient evidence to confidently determine correctness
+- Insufficient evidence to confidently determine correctness
 
 The core problem is therefore not simply:
 
-\> "Can an LLM evaluate code?"
+> "Can an LLM evaluate code?"
 
 It is:
 
-\> **\*\*"Can we distinguish an agent's claim of correctness from independently generated evidence of correctness?"\*\***
+> ****"Can we distinguish an agent's claim of correctness from independently generated evidence of correctness?"****
 
-**---**
+---
 
-**# Solution**
+# Solution
 
 TraceGuard X uses an evidence-first, inspectable verification workflow.
 
-\`\`\`text
+```text
 
 Agent Trajectory
 
@@ -118,19 +118,19 @@ Deterministic Scoring
 
 Final Verdict
 
-\`\`\`
+```
 
 The system deliberately separates interpretation from verification.
 
 Language-model-style reasoning can help interpret a trajectory and plan verification, but it cannot override hard execution evidence.
 
-**---**
+---
 
-**# Why TraceGuard X?**
+# Why TraceGuard X?
 
 A conventional evaluator may trust the agent's final response:
 
-\`\`\`text
+```text
 
 Agent
 
@@ -146,11 +146,11 @@ Agent
 
 PASS
 
-\`\`\`
+```
 
 TraceGuard X instead asks:
 
-\`\`\`text
+```text
 
 Agent claim
 
@@ -192,21 +192,21 @@ Evidence reconciliation
 
 Deterministic verdict
 
-\`\`\`
+```
 
 This makes the evaluation auditable.
 
-**---**
+---
 
-**# Baseline vs Advanced**
+# Baseline vs Advanced
 
-**## Baseline**
+## Baseline
 
 The baseline is deliberately simple.
 
 It trusts the trajectory's reported verdict and reported test information rather than independently reproducing the candidate's execution.
 
-\`\`\`text
+```text
 
 Trajectory
 
@@ -222,13 +222,13 @@ Single Evaluator
 
 Reported Score / Verdict
 
-\`\`\`
+```
 
-**## Advanced TraceGuard X**
+## Advanced TraceGuard X
 
 The advanced evaluator independently verifies the candidate implementation.
 
-\`\`\`text
+```text
 
 Trajectory
 
@@ -292,39 +292,39 @@ Deterministic Score
 
 Human Review Recommendation
 
-\`\`\`
+```
 
 Both systems consume the same fixed V3 benchmark traces.
 
-**---**
+---
 
-**# V3 Benchmark**
+# V3 Benchmark
 
-The V3 benchmark contains **\*\*40 synthetic traces\*\***.
+The V3 benchmark contains ****40 synthetic traces****.
 
 The benchmark distribution is:
 
-\| Case category | Cases |
+| Case category | Cases |
 
-\|---|---:|
+|---|---:|
 
-\| Correct implementations | 8 |
+| Correct implementations | 8 |
 
-\| Logic failures | 7 |
+| Logic failures | 7 |
 
-\| Runtime failures | 6 |
+| Runtime failures | 6 |
 
-\| Missing-requirement failures | 5 |
+| Missing-requirement failures | 5 |
 
-\| False-success / output-claim cases | 4 |
+| False-success / output-claim cases | 4 |
 
-\| Syntax failures | 3 |
+| Syntax failures | 3 |
 
-\| Dependency failures | 3 |
+| Dependency failures | 3 |
 
-\| Timeout failures | 4 |
+| Timeout failures | 4 |
 
-\| **\*\*Total\*\*** | **\*\*40\*\*** |
+| ****Total**** | ***40*** |
 
 Each trace contains six explicit verification inputs.
 
@@ -332,67 +332,67 @@ The baseline and advanced systems consume exactly the same trace files.
 
 The benchmark is fixed and deterministic so that the comparison is reproducible.
 
-**---**
+---
 
-**# Primary Metric**
+# Primary Metric
 
 The primary metric is:
 
-\`\`\`text
+```text
 
 Verdict Accuracy
 
-\=
+=
 
 Correct Verdicts / Total Benchmark Cases
 
-\`\`\`
+```
 
 Secondary evaluation metrics include:
 
-\- Critical-failure detection
+- Critical-failure detection
 
-\- Claim/evidence contradiction detection
+- Claim/evidence contradiction detection
 
-\- Precision
+- Precision
 
-\- Recall
+- Recall
 
-\- F1
+- F1
 
-\- Confusion matrix
+- Confusion matrix
 
-\- Verification coverage
+- Verification coverage
 
-\- Sandbox/infrastructure failures
+- Sandbox/infrastructure failures
 
-\- Human-review requirements
+- Human-review requirements
 
 All benchmark metrics are generated by:
 
-\`\`\`text
+```text
 
 evaluation/compare.py
 
-\`\`\`
+```
 
 They are not manually inserted into the evaluation artifact.
 
-**---**
+---
 
-**# V3 Benchmark Results**
+# V3 Benchmark Results
 
 The final V3 benchmark was executed using the submitted evaluation pipeline.
 
-\| Metric | Baseline | Advanced |
+| Metric | Baseline | Advanced |
 
-\|---|---:|---:|
+|---|---:|---:|
 
-\| Verdict accuracy | 20.00% | **\*\*100.00%\*\*** |
+| Verdict accuracy | 20.00% | ***100.00%*** |
 
-\| Benchmark cases | 40 | **\*\*40\*\*** |
+| Benchmark cases | 40 | ***40*** |
 
-\| Incorrect verdicts | — | **\*\*0\*\*** |
+| Incorrect verdicts | — | ***0*** |
 
 **### Benchmark Fixture Validation vs Final Verdict Accuracy
 
@@ -417,7 +417,7 @@ underlying validation result.
 
 ### Improvement**
 
-\`\`\`text
+```text
 
 Baseline accuracy   = 20.00%
 
@@ -427,43 +427,43 @@ Absolute improvement = +80 percentage points
 
 Relative improvement = +400%
 
-\`\`\`
+```
 
 The advanced evaluator correctly classified:
 
-\`\`\`text
+```text
 
 40 / 40 cases
 
-\`\`\`
+```
 
 with:
 
-\`\`\`text
+```text
 
 0 incorrect verdicts
 
-\`\`\`
+```
 
 The complete generated metrics are stored in:
 
-\`\`\`text
+```text
 
 artifacts/comparison.json
 
-\`\`\`
+```
 
 The benchmark results should always be regenerated from the evaluation scripts rather than manually edited.
 
-**---**
+---
 
-**# Detection Metrics**
+# Detection Metrics
 
 The V3 evaluation also measures failure-detection performance.
 
 The current benchmark reports:
 
-\`\`\`text
+```text
 
 Critical-failure detection
 
@@ -473,11 +473,11 @@ Recall    = 56.25%
 
 F1        = 72.00%
 
-\`\`\`
+```
 
 and:
 
-\`\`\`text
+```text
 
 Claim/evidence contradiction detection
 
@@ -487,39 +487,67 @@ Recall    = 65%
 
 F1        = 57.78%
 
-\`\`\`
+```
 
 These metrics are generated automatically by the comparison script.
 
 They should be interpreted separately from overall verdict accuracy.
 
-**---**
+---
 
-**# Agentic Verification Workflow**
+## Agent Design Rationale
+
+TraceGuard X deliberately separates agent reasoning from authoritative
+verification.
+
+Agents are used where interpretation, planning, and adversarial reasoning
+provide value. Deterministic tools are used where correctness must be
+independently established.
+
+| Component | Responsibility | Design Rationale |
+|---|---|---|
+| Trace Analyst | Extract claims from the trajectory | Separates the agent's reported claims from independently generated evidence |
+| Requirement Agent | Build the requirement graph | Converts natural-language requirements into explicit verification targets |
+| Verification Planner | Plan verification checks | Determines which evidence should be collected for each requirement |
+| Bounded Adversarial Verifier | Generate edge cases | Targets likely failure modes beyond the agent's reported happy-path tests |
+| Static Analyzer | Inspect candidate code | Provides deterministic syntax and structural evidence before execution |
+| Execution Agent | Execute verification cases | Produces independent runtime evidence inside the sandbox |
+| Auditor | Reconcile claims and evidence | Identifies contradictions and determines when human review is appropriate |
+
+The system intentionally does not use an LLM as the final authority on
+correctness. Agents handle interpretation and planning, while deterministic
+verification provides the authoritative evidence used for the final decision.
+
+This separation improves auditability, reproducibility, and resistance to
+false-success claims.
+
+---
+
+# Agentic Verification Workflow
 
 TraceGuard X uses specialized stages rather than relying on a single evaluator.
 
-**## 1. Trace Analyst**
+## 1. Trace Analyst
 
 The Trace Analyst normalizes the incoming trajectory and extracts claims such as:
 
-\- Claimed verdict
+- Claimed verdict
 
-\- Claimed test results
+- Claimed test results
 
-\- Claimed output
+- Claimed output
 
-\- Claimed exit code
+- Claimed exit code
 
 Agent claims are treated as hypotheses rather than proof.
 
-**## 2. Requirement Agent**
+## 2. Requirement Agent
 
 Requirements are converted into structured verification targets.
 
 Example:
 
-\`\`\`text
+```text
 
 Requirement:
 
@@ -543,49 +571,49 @@ Requirement Graph
 
         +--> Output correctness
 
-\`\`\`
+```
 
 This makes requirements inspectable and independently verifiable.
 
-**## 3. Verification Planner**
+## 3. Verification Planner
 
 The planner determines how requirements should be verified.
 
 The system prioritizes deterministic and executable evidence wherever possible.
 
-**## 4. Bounded Adversarial Verifier**
+## 4. Bounded Adversarial Verifier
 
 The adversarial verifier attempts to falsify the implementation using a fixed verification budget.
 
 The default budget is:
 
-\`\`\`text
+```text
 
 8 adversarial cases
 
-\`\`\`
+```
 
 Examples include:
 
-\- Empty input
+- Empty input
 
-\- Single-character input
+- Single-character input
 
-\- Whitespace
+- Whitespace
 
-\- Unicode
+- Unicode
 
-\- Long input
+- Long input
 
-\- Numeric-looking strings
+- Numeric-looking strings
 
-\- Newline boundaries
+- Newline boundaries
 
-\- Representative inputs
+- Representative inputs
 
 The verifier performs deduplication and respects the configured budget.
 
-**## 5. Static Analyzer**
+## 5. Static Analyzer
 
 Candidate code is statically analyzed before execution.
 
@@ -593,131 +621,131 @@ This allows TraceGuard X to detect syntax/compilation failures before attempting
 
 Static failures prevent unsafe or invalid candidate execution.
 
-**## 6. Independent Docker Sandbox**
+## 6. Independent Docker Sandbox
 
 Candidate code is treated as untrusted.
 
 The execution environment requests:
 
-\- Docker network isolation
+- Docker network isolation
 
-\- Read-only filesystem
+- Read-only filesystem
 
-\- Dropped Linux capabilities
+- Dropped Linux capabilities
 
-\- \`no-new-privileges\`
+- `no-new-privileges`
 
-\- CPU limits
+- CPU limits
 
-\- Memory limits
+- Memory limits
 
-\- PID limits
+- PID limits
 
-\- Execution timeout
+- Execution timeout
 
-\- Disposable workspace
+- Disposable workspace
 
 The sandbox uses:
 
-\`\`\`text
+```text
 
 python:3.11-slim
 
-\`\`\`
+```
 
 with network access disabled.
 
 Docker is treated as a practical containment boundary, not as a formal security proof.
 
-**## 7. Evidence Reconciliation**
+## 7. Evidence Reconciliation
 
 The reconciliation layer compares agent claims against independently generated evidence.
 
 TraceGuard X separates four concepts:
 
-**### Candidate failure**
+### Candidate failure
 
 The implementation itself failed independent verification.
 
 Examples:
 
-\`\`\`text
+```text
 
-syntax\_error
+syntax_error
 
-runtime\_error
+runtime_error
 
-behavior\_failure
+behavior_failure
 
 timeout
 
-\`\`\`
+```
 
-**### Claim contradiction**
+### Claim contradiction
 
 The agent claimed success, but independent candidate evidence indicates failure.
 
-\`\`\`text
+```text
 
-claim\_evidence\_contradiction
+claim_evidence_contradiction
 
-\`\`\`
+```
 
-**### Verification gap**
+### Verification gap
 
 The evaluator could not obtain sufficient independent evidence.
 
-\`\`\`text
+```text
 
-verification\_gap
+verification_gap
 
-sandbox\_timeout
+sandbox_timeout
 
-\`\`\`
+```
 
-**### Human review**
+### Human review
 
 Ambiguous or incomplete evidence can be escalated for human review rather than being silently treated as proof of correctness.
 
-**---**
+---
 
-**# Deterministic Scoring**
+# Deterministic Scoring
 
 The final score is generated from structured evidence.
 
 The scoring considers:
 
-\- Functional correctness
+- Functional correctness
 
-\- Test pass rate
+- Test pass rate
 
-\- Evidence coverage
+- Evidence coverage
 
-\- Property evidence when available
+- Property evidence when available
 
-\- Claim consistency
+- Claim consistency
 
-\- Robustness
+- Robustness
 
-\- Static code quality
+- Static code quality
 
-\- Verification findings
+- Verification findings
 
 The final verdict is deterministic.
 
-A candidate receives \`PASS\` only when the evidence supports a complete successful verification without blocking candidate failures or verification blockers.
+A candidate receives `PASS` only when the evidence supports a complete successful verification without blocking candidate failures or verification blockers.
 
 The scorer does not allow an agent's narrative claim to override independent execution evidence.
 
-**---**
+---
 
-**# Evidence Graph**
+# Evidence Graph
 
 TraceGuard X produces an evidence graph connecting the evaluation stages.
 
 Conceptually:
 
-\`\`\`text
+```text
 
 Agent Claim
 
@@ -757,69 +785,69 @@ Finding
 
 Final Verdict
 
-\`\`\`
+```
 
 This makes it possible to inspect why a verdict was produced instead of only seeing the final score.
 
-**---**
+---
 
-**# Human Review Gate**
+# Human Review Gate
 
 TraceGuard X does not attempt to turn every ambiguous situation into an automatic PASS or FAIL.
 
 Human review can be required when:
 
-\- Evidence is incomplete
+- Evidence is incomplete
 
-\- Sandbox execution fails
+- Sandbox execution fails
 
-\- Verification coverage is incomplete
+- Verification coverage is incomplete
 
-\- Claims conflict with evidence
+- Claims conflict with evidence
 
-\- Important findings are present
+- Important findings are present
 
 The evaluator therefore produces both:
 
-\`\`\`text
+```text
 
 Machine-verifiable evidence
 
-\`\`\`
+```
 
 and:
 
-\`\`\`text
+```text
 
 Human review recommendation
 
-\`\`\`
+```
 
-**---**
+---
 
-**# Safety**
+# Safety
 
 Candidate code is treated as untrusted.
 
 The Docker executor requests:
 
-\`\`\`text
+```text
 
-\--network none
+--network none
 
-\--read-only
+--read-only
 
-\--cap-drop ALL
+--cap-drop ALL
 
-\--security-opt no-new-privileges
+--security-opt no-new-privileges
 
-\--memory 128m
+--memory 128m
 
-\--cpus 0.50
+--cpus 0.50
 
-\--pids-limit 32
+--pids-limit 32
 
-\`\`\`
+```
 
 The candidate and harness are mounted into a disposable workspace.
 
@@ -827,91 +855,91 @@ The system does not deploy candidate code or make consequential decisions.
 
 TraceGuard X produces evidence and a recommendation for engineering review.
 
-\> Docker provides practical containment for this project; it is not presented as a formal security guarantee.
+> Docker provides practical containment for this project; it is not presented as a formal security guarantee.
 
-**---**
+---
 
-**# Quick Start**
+# Quick Start
 
 Python 3.10+ and Docker are recommended.
 
 Create the environment:
 
-\`\`\`bash
+```bash
 
 python -m venv .venv
 
-\`\`\`
+```
 
-**## Windows**
+## Windows
 
-\`\`\`powershell
+```powershell
 
 .venv\Scripts\activate
 
-\`\`\`
+```
 
-**## Linux / macOS**
+## Linux / macOS
 
-\`\`\`bash
+```bash
 
 source .venv/bin/activate
 
-\`\`\`
+```
 
 Install dependencies:
 
-\`\`\`bash
+```bash
 
 pip install -r requirements.txt
 
-\`\`\`
+```
 
-**---**
+---
 
-**# Run Tests**
+# Run Tests
 
-\`\`\`bash
+```bash
 
 python -m pytest -q
 
-\`\`\`
+```
 
 The repository's current test suite contains:
 
-\`\`\`text
+```text
 
 6 tests
 
-\`\`\`
+```
 
-**---**
+---
 
-**# Run Baseline**
+# Run Baseline
 
-\`\`\`bash
+```bash
 
 python -m baseline.baseline \\
 
   --data data/traces \\
 
-  --output artifacts/baseline\_results.json
+  --output artifacts/baseline_results.json
 
-\`\`\`
+```
 
-**---**
+---
 
-**# Run Advanced Evaluation**
+# Run Advanced Evaluation
 
-\`\`\`bash
+```bash
 
 python -m src.traceguard.pipeline \\
 
   --data data/traces \\
 
-  --output artifacts/advanced\_results.json
+  --output artifacts/advanced_results.json
 
-\`\`\`
+```
 
 The advanced pipeline:
 
@@ -937,137 +965,145 @@ The advanced pipeline:
 
 11\. Writes the advanced result artifact
 
-**---**
+---
 
-**# Compare Baseline and Advanced**
+# Compare Baseline and Advanced
 
-\`\`\`bash
+```bash
 
 python -m evaluation.compare \\
 
-  --baseline artifacts/baseline\_results.json \\
+  --baseline artifacts/baseline_results.json \\
 
-  --advanced artifacts/advanced\_results.json \\
+  --advanced artifacts/advanced_results.json \\
 
-  --ground data/ground\_truth.json
+  --ground data/ground_truth.json
 
-\`\`\`
+```
 
 The comparison generates:
 
-\`\`\`text
+```text
 
 artifacts/comparison.json
 
-\`\`\`
+```
 
 The generated artifact contains:
 
-\- Benchmark size
+- Benchmark size
 
-\- Baseline accuracy
+- Baseline accuracy
 
-\- Advanced accuracy
+- Advanced accuracy
 
-\- Absolute improvement
+- Absolute improvement
 
-\- Relative improvement
+- Relative improvement
 
-\- Critical-failure precision/recall/F1
+- Critical-failure precision/recall/F1
 
-\- Claim/evidence contradiction precision/recall/F1
+- Claim/evidence contradiction precision/recall/F1
 
-\- Verification-gap counts
+- Verification-gap counts
 
-\- Sandbox-failure counts
+- Sandbox-failure counts
 
-\- Confusion matrix
+- Confusion matrix
 
-\- Per-case error analysis
+- Per-case error analysis
 
-**---**
+---
 
-**# Dashboard**
+# Dashboard
 
 Launch the Streamlit dashboard with:
 
-\`\`\`bash
+```bash
 
 streamlit run app.py
 
-\`\`\`
+```
 
 The dashboard provides an inspectable view of the evaluation results and evidence.
 
-**---**
+---
 
-**# Generated Artifacts**
+# Generated Artifacts
 
 A typical evaluation produces:
 
-\`\`\`text
+```text
 
 artifacts/
 
-├── baseline\_results.json
+├── baseline_results.json
 
-├── advanced\_results.json
+├── advanced_results.json
 
 ├── comparison.json
 
+├── benchmark_validation.json
+
+├── mutation_report.json
+
+├── preflight.json
+
+├── evaluator_challenge.json
+
 └── experiments/
 
-\`\`\`
+```
 
 The advanced result contains structured evidence including:
 
-\`\`\`text
+```text
 
-trace\_id
+trace_id
 
 requirements
 
-verification\_plan
+verification_plan
 
-adversarial\_cases
+adversarial_cases
 
 score
 
 verdict
 
-claim\_consistency
+claim_consistency
 
-requirement\_coverage
+requirement_coverage
 
-evidence\_coverage
+evidence_coverage
 
-test\_pass\_rate
+test_pass_rate
 
-property\_pass\_rate
+property_pass_rate
 
-functional\_correctness
+functional_correctness
 
 robustness
 
-code\_quality
+code_quality
 
-human\_review\_required
+human_review_required
 
 confidence
 
-static\_evidence
+static_evidence
 
 execution
 
 findings
 
-evidence\_graph
+evidence_graph
 
-\`\`\`
+```
 
-**---**
+---
 
-**# Data**
+# Data
 
 All included benchmark data is synthetic.
 
@@ -1075,29 +1111,29 @@ No real credentials or private user data are required for the benchmark.
 
 The benchmark traces are stored under:
 
-\`\`\`text
+```text
 
 data/traces/
 
-\`\`\`
+```
 
 Ground-truth labels are stored under:
 
-\`\`\`text
+```text
 
-data/ground\_truth.json
+data/ground_truth.json
 
-\`\`\`
+```
 
-**---**
+---
 
-**# Benchmark Integrity**
+# Benchmark Integrity
 
 The baseline and advanced systems must consume the same benchmark cases.
 
 The comparison script validates that:
 
-\`\`\`text
+```text
 
 baseline trace IDs
 
@@ -1111,51 +1147,51 @@ advanced trace IDs
 
 ground-truth trace IDs
 
-\`\`\`
+```
 
 This prevents evaluating different subsets of the benchmark.
 
 The benchmark is not intended to be tuned by manually editing generated result artifacts.
 
-**---**
+---
 
-**# Improvement Changelog**
+# Improvement Changelog
 
 TraceGuard X evolved from a simple trajectory evaluator into an evidence-first verification system.
 
 The major improvements were:
 
-**### Iteration 1 — Independent execution**
+### Iteration 1 — Independent execution
 
 The evaluator stopped relying solely on reported execution claims and introduced independent candidate execution.
 
-**### Iteration 2 — Static verification**
+### Iteration 2 — Static verification
 
 Static analysis was introduced to catch syntax/compilation failures before sandbox execution.
 
-**### Iteration 3 — Evidence reconciliation**
+### Iteration 3 — Evidence reconciliation
 
 Agent claims were explicitly compared with independent evidence.
 
-**### Iteration 4 — Requirement-aware verification**
+### Iteration 4 — Requirement-aware verification
 
 Requirements were converted into independently verifiable targets.
 
-**### Iteration 5 — Bounded adversarial verification**
+### Iteration 5 — Bounded adversarial verification
 
 The evaluator began generating additional edge cases within a fixed budget.
 
-**### Iteration 6 — Evidence graph and human-review gates**
+### Iteration 6 — Evidence graph and human-review gates
 
 Verification evidence and findings became connected through an inspectable evidence graph, while ambiguous cases could be escalated for human review.
 
-**### V3 — Expanded benchmark and stronger evaluation**
+### V3 — Expanded benchmark and stronger evaluation
 
 The benchmark was expanded to 40 fixed synthetic cases with a transparent failure distribution.
 
 The final V3 benchmark demonstrated:
 
-\`\`\`text
+```text
 
 20% baseline accuracy
 
@@ -1165,23 +1201,23 @@ The final V3 benchmark demonstrated:
 
 100% advanced accuracy
 
-\`\`\`
+```
 
 for an absolute improvement of:
 
-\`\`\`text
+```text
 
 +80 percentage points
 
-\`\`\`
+```
 
-**---**
+---
 
-**# Prior Experiment**
+# Prior Experiment
 
 An earlier Docker experiment on the 15-case benchmark produced:
 
-\`\`\`text
+```text
 
 Baseline accuracy = 33.33%
 
@@ -1189,23 +1225,23 @@ Advanced accuracy = 66.67%
 
 Improvement       = +33.33 percentage points
 
-\`\`\`
+```
 
 That experiment is preserved under:
 
-\`\`\`text
+```text
 
-artifacts/experiments/v2\_docker\_run/
+artifacts/experiments/v2_docker_run/
 
-\`\`\`
+```
 
 It is retained as an experiment record and is not used as the final V3 benchmark result.
 
 The final competition result is generated from the V3 40-case benchmark.
 
-**---**
+---
 
-**# Main Failure Mode**
+# Main Failure Mode
 
 Verification quality ultimately depends on the quality of the verification plan.
 
@@ -1213,107 +1249,107 @@ An underspecified requirement may not have a perfect executable oracle.
 
 For example, if a requirement says:
 
-\`\`\`text
+```text
 
 "Produce a high-quality answer."
 
-\`\`\`
+```
 
 there may not be a deterministic executable test that completely captures quality.
 
 TraceGuard X therefore distinguishes:
 
-\`\`\`text
+```text
 
 Candidate failure
 
-\`\`\`
+```
 
 from:
 
-\`\`\`text
+```text
 
 Insufficient verification evidence
 
-\`\`\`
+```
 
 rather than pretending every requirement has a perfect automated oracle.
 
-**---**
+---
 
-**# Hot Take**
+# Hot Take
 
-\> **\*\*Another LLM judge can produce another opinion. Independent execution can produce evidence. For code evaluation, evidence should win.\*\***
+> ****Another LLM judge can produce another opinion. Independent execution can produce evidence. For code evaluation, evidence should win.****
 
 The central design principle of TraceGuard X is therefore:
 
-\`\`\`text
+```text
 
 Claims are hypotheses.
 
 Evidence is verification.
 
-\`\`\`
+```
 
-**---**
+---
 
-**# V3 Differentiators**
+# V3 Differentiators
 
 TraceGuard X adds evaluator-strengthening mechanisms:
 
-1\. **\*\*Requirement Graph\*\***  
+1\. ****Requirement Graph****  
 
    Converts requirements into inspectable verification targets.
 
-2\. **\*\*Bounded Adversarial Verifier\*\***  
+2\. ****Bounded Adversarial Verifier****  
 
    Attempts to falsify implementations within an explicit verification budget.
 
-3\. **\*\*Property-Aware Verification\*\***  
+3\. ****Property-Aware Verification****  
 
    Incorporates property evidence when available in addition to fixed executable examples.
 
-4\. **\*\*Evidence Graph\*\***  
+4\. ****Evidence Graph****  
 
    Links claims, requirements, verification steps, execution evidence, findings and final decisions.
 
-5\. **\*\*Mutation / Evaluator Self-Challenge\*\***  
+5\. ****Mutation / Evaluator Self-Challenge****  
 
    Provides controlled evaluator self-testing through realistic injected faults where enabled by the repository's experiment tooling.
 
-6\. **\*\*Human Review Gates\*\***  
+6\. ****Human Review Gates****  
 
    Escalates ambiguous or insufficiently verified cases instead of silently treating missing evidence as correctness.
 
-**---**
+---
 
-**# Agent-Use Disclosure**
+# Agent-Use Disclosure
 
 Coding-agent assistance was used during development.
 
 Representative workflow records are stored in:
 
-\`\`\`text
+```text
 
 trajectories/
 
-\`\`\`
+```
 
 These records include relevant agent actions, tool outputs, feedback and decisions.
 
 The repository distinguishes development assistance from the independent verification performed by TraceGuard X during evaluation.
 
-**---**
+---
 
-**# Submission Evidence**
+# Submission Evidence
 
 The final submission should include:
 
-\`\`\`text
+```text
 
 README.md
 
-IMPROVEMENT\_CHANGELOG.md
+IMPROVEMENT_CHANGELOG.md
 
 REPRODUCTION.md
 
@@ -1331,35 +1367,35 @@ data/
 
 tests/
 
-\`\`\`
+```
 
 The final benchmark artifacts should be generated from the evaluation pipeline.
 
 Do not manually edit benchmark metrics after generation.
 
-**---**
+---
 
-**# Rubric Alignment**
+# Rubric Alignment
 
-\| Rubric | Implementation Evidence |
+| Rubric | Implementation Evidence |
 
-\|---|---|
+|---|---|
 
-\| **\*\*Problem & User Value (15)\*\*** | Addresses unreliable coding-agent execution claims for engineering reviewers |
+| ****Problem & User Value (15)**** | Addresses unreliable coding-agent execution claims for engineering reviewers |
 
-\| **\*\*Agent Solution & Engineering (30)\*\*** | Specialized verification stages, requirement graph, adversarial verification, deterministic tools and independent sandbox |
+| ****Agent Solution & Engineering (30)**** | Specialized verification stages, requirement graph, adversarial verification, deterministic tools and independent sandbox |
 
-\| **\*\*End-to-End Quality (20)\*\*** | Structured evidence, reconciliation, scoring, evidence graph, dashboard and human-review recommendation |
+| ****End-to-End Quality (20)**** | Structured evidence, reconciliation, scoring, evidence graph, dashboard and human-review recommendation |
 
-\| **\*\*Measured Improvement (15)\*\*** | Baseline and advanced systems evaluated on the same fixed 40-case benchmark |
+| ****Measured Improvement (15)**** | Baseline and advanced systems evaluated on the same fixed 40-case benchmark |
 
-\| **\*\*Reproducibility (15)\*\*** | Synthetic benchmark, documented dependencies, exact commands, Docker-based execution and generated artifacts |
+| ****Reproducibility (15)**** | Synthetic benchmark, documented dependencies, exact commands, Docker-based execution and generated artifacts |
 
-\| **\*\*Hot Take / Insights (5)\*\*** | Demonstrates the value of independently generated evidence over another layer of model agreement |
+| ****Hot Take / Insights (5)**** | Demonstrates the value of independently generated evidence over another layer of model agreement |
 
-**---**
+---
 
-**# Important Measurement Rule**
+# Important Measurement Rule
 
 Benchmark results must always come from generated artifacts.
 
@@ -1367,7 +1403,7 @@ Do not manually type or replace benchmark percentages.
 
 The reproducible evaluation flow is:
 
-\`\`\`text
+```text
 
 data/traces
 
@@ -1385,7 +1421,7 @@ Baseline                 TraceGuard X
 
      v                      v
 
-baseline\_results.json   advanced\_results.json
+baseline_results.json   advanced_results.json
 
      |                      |
 
@@ -1403,19 +1439,19 @@ baseline\_results.json   advanced\_results.json
 
         comparison.json
 
-\`\`\`
+```
 
 The final presentation should use the values generated by this process.
 
-**---**
+---
 
-**# Final Result**
+# Final Result
 
 TraceGuard X demonstrates that an evidence-first evaluator can substantially improve coding-agent trajectory evaluation.
 
 On the V3 40-case benchmark:
 
-\`\`\`text
+```text
 
 Baseline
 
@@ -1431,18 +1467,18 @@ Advanced
 
 100.00%
 
-\`\`\`
+```
 
 Result:
 
-\`\`\`text
+```text
 
 40 / 40 correct verdicts
 
 0 incorrect advanced verdicts
 
-\`\`\`
+```
 
 The system's core principle is simple:
 
-\> **\*\*Do not trust the agent's claim when the claim can be independently verified.\*\***
+> ****Do not trust the agent's claim when the claim can be independently verified.****
